@@ -5,7 +5,7 @@
 
 ```
 dnf update
-dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-redis http://rpms.famillecollet.com/fedora/remi-release-22.rpm
+dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-22.rpm
 dnf install --enablerepo=remi redis
 
 
@@ -74,22 +74,53 @@ systemctl restart fail2ban
 # Set mariadb root password and create a database
 mysqladmin password xxx
 ```
-## Web server (nginx/php-fpm)
-```
-```
-
 
 ## Setup main app user and db
 ```
 useradd sedr
 chmod o+x /home/sedr
+setsebool -P httpd_read_user_content 1
+setsebool -P httpd_enable_homedirs 1
+
 
 su - sedr
 git clone https://github.com/kefahi/sedr.git repo
-mkdir -p data logs public run/tmp 
+mkdir -p data logs run/tmp bin
 mysql -uroot -pxxx <<EOF
 create database sedr character set utf8;
 create user 'sedr'@'localhost' identified by 'sedr';
 grant all privileges on sedr.* to 'sedr'@'localhost';
 EOF
+
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar bin/composer
+chmod a+x bin/composer
+cd public
+composer global require "fxp/composer-asset-plugin:~1.0.0"
+composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+ln -s /home/sedr/repo/basic/web /home/sedr/public
+
 ```
+
+## Web server (nginx/php-fpm)
+```
+# vim /etc/php.ini
+#  expose_php = Off
+#  date.timezone = UTC
+  
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.off
+mv /etc/nginx/conf.d/php-fpm.conf /etc/nginx/conf.d/php-fpm.conf.off
+mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.off
+mv /home/sedr/repo/setup/nginx/nginx.conf /etc/nginx
+mv /home/sedr/repo/setup/nginx/conf.d/io.conf /etc/nginx/conf.d
+mv /home/sedr/repo/setup/php-fpm.d/io.conf /etc/php-fpm.d
+
+systemctl start php-fpm
+systemctl start nginx
+```
+
+
+## Check that the app is up and running
+http://sedr.io/requirements.php
+http://sedr.io
+
