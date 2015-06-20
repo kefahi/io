@@ -77,13 +77,13 @@ mysqladmin password xxx
 
 ## Setup main app user and db
 ```
-useradd sedr
-chmod o+x /home/sedr
+useradd io
+chmod o+x /home/io
 setsebool -P httpd_read_user_content 1
 setsebool -P httpd_enable_homedirs 1
 
 
-su - sedr
+su - io
 git clone https://github.com/kefahi/sedr.git repo
 mkdir -p data logs run/tmp bin
 mysql -uroot -pxxx <<EOF
@@ -98,7 +98,7 @@ chmod a+x bin/composer
 cd public
 composer global require "fxp/composer-asset-plugin:~1.0.0"
 composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-ln -s /home/sedr/repo/basic/web /home/sedr/public
+ln -s /home/io/repo/basic/web /home/io/public
 
 ```
 
@@ -111,9 +111,9 @@ ln -s /home/sedr/repo/basic/web /home/sedr/public
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.off
 mv /etc/nginx/conf.d/php-fpm.conf /etc/nginx/conf.d/php-fpm.conf.off
 mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.off
-mv /home/sedr/repo/setup/nginx/nginx.conf /etc/nginx
-mv /home/sedr/repo/setup/nginx/conf.d/io.conf /etc/nginx/conf.d
-mv /home/sedr/repo/setup/php-fpm.d/io.conf /etc/php-fpm.d
+mv /home/io/repo/setup/nginx/nginx.conf /etc/nginx
+mv /home/io/repo/setup/nginx/conf.d/io.conf /etc/nginx/conf.d
+mv /home/io/repo/setup/php-fpm.d/io.conf /etc/php-fpm.d
 
 systemctl start php-fpm
 systemctl start nginx
