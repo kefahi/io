@@ -2,7 +2,7 @@
 
 Data Management System
 
-The name comes from the Arabic word "سدر" which is the plural for Rhamnus (a tree that grows in the desert with massive leaf-pattern); the singular form is Sedra "سدرة".
+The name comes from the Arabic word "سدر" which is the plural for Rhamnus (a tree that grows in the Arabian Peninsula and Levant with dense branches and leaves and deep roots); the singular form is Sedra "سدرة".
 
 This project aims at providing a unified Data Management System that would deliver the functionalities of the systems below:
 - Blogger/CMS (e.g. Wrodpress)
