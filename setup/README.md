@@ -30,7 +30,7 @@ set sw=2 ' >> /etc/vimrc
 ```
 
 ## Add admin user to be used for ssh instead of root
-```
+```bash
 useradd -G wheel admin
 # visudo : comment the first wheel line and uncomment the second to enable passwordless switch to root
 su - admin
@@ -53,7 +53,7 @@ exit # exit admin and back to root
 
 Disable root or password-based ssh 
 Test that you can access admin via ssh and that sudo is working as well before executing the following step.
-```
+```bash
 # vim /etc/ssh/sshd_config
 #   PermitEmptyPasswords no
 #   PasswordAuthentication no
@@ -76,7 +76,7 @@ mysqladmin password xxx
 ```
 
 ## Setup main app user and db
-```
+```bash
 useradd io
 chmod o+x /home/io
 setsebool -P httpd_read_user_content 1
@@ -103,7 +103,7 @@ ln -s /home/io/repo/basic/web /home/io/public
 ```
 
 ## Web server (nginx/php-fpm)
-```
+```bash
 # vim /etc/php.ini
 #  expose_php = Off
 #  date.timezone = UTC
@@ -121,6 +121,6 @@ systemctl start nginx
 
 
 ## Check that the app is up and running
-http://sedr.io/requirements.php
-http://sedr.io
+- http://sedr.io/requirements.php
+- http://sedr.io
 
