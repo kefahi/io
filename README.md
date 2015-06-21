@@ -64,9 +64,9 @@ Nothing is determined yet. Going now though a research phase.
 * Yii2
 
 
-## File structure
-* Indexes section (temprary indexes generated on the fly)
-* Data repository 
-* Data revision history
-* Meta data (Lineage, schema, History)
-* Modules (code/binaries)
+## Folder structure
+* *Indexes*: A means of speed access (e.g. RDBMS, NoSQL, Lucene index ...etc). This remains rather an artifact of the master data persisted on the file system. As such it must be always possible to rebuild the indexes without any loss of information.
+* *Data* The actual repository holding the data entities along with sub-content.
+* *Data revision history*: The deltas of the entities as they came to be
+* *Meta data* (Lineage, schema, History): The story of the data and how they became to be.
+* *Modules* (code/binaries): Indivdual modules that can manage (read/write/present) certain types of entities.
