@@ -3,7 +3,7 @@
 
 ## General package update and installation
 
-```
+```bash
 dnf update
 dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-22.rpm
 dnf install --enablerepo=remi redis
