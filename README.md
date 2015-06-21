@@ -4,6 +4,22 @@ Data Management System
 
 The name comes from the Arabic word "سدر" which is the plural for Rhamnus (a tree that grows in the Arabian Peninsula and Levant with dense branches and leaves and deep roots); the singular form is Sedra "سدرة".
 
+Working for so long in using and building datat and content centric systems, its clear that regardless of the the specific differences the patterns repeat:
+- Individual data entities and their belongings
+- Relations among the data entities
+- Users with proper access control
+- Interface Layer: API with UI on top.
+
+The most profound form of data persistance is files. As plain files are accessible by all consumer apps and can be easily maintained and managed.On the other hand, persisting data in a database engine (being SQL or otherwise) means that you are confined by that engine as your single means of accessing and mangaing the data; which is not desirable.
+
+So we want to persist the data into files, but we don't want to keep the schema separate from the data. so the data files should also contain all the necessary meta data that allows a piece of code to parse and present to the end consumer.
+
+An entity could actually be a bit more than a single file. it could for example contain images or other richmedia content. so a single entity could end up being in a folder of its own or a single tar-ball / zip file with all its belongings.
+
+Now imagin a wiki page being an entity, a blog article, an email or instant message, a ticket, a spread sheet, an ebook / pdf and so forth an so on.
+
+Sedr plans to abstract all that, and present one software (or better say reference implementation of a software as there is no reason why other compatible software wont be written for it) that would act like all the aforementioned systems and more.
+
 This project aims at providing a unified Data Management System that would deliver the functionalities of the systems below:
 - Blogger/CMS (e.g. Wrodpress)
 - Wiki (e.g. Dokuwiki)
