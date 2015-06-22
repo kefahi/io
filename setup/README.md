@@ -36,9 +36,8 @@ useradd -G wheel admin
 su - admin
 mkdir .ssh
 echo '
-ssh-dss AAAAB3NzaC1kc3MAAACBALiKnp7eI1zL1itp1WmW2VwFA0RzzzBQTZC7c65a4cfPYKk8Luyw4fWR2F3EEmOe9sXwsxPhp+fn7eYoUa2ghOrAbYSf678VMBtcak93OxPnXZs0+ehwvV0k4LPcmAJbqWqyZxGCPFW7V0WTWPCFM7AwTds9/ut0+0zKU1GB24CtAAAAFQC3g3XHWNTzTM55lJOKJ+y1kretgwAAAIBUkHQ8t3f2rERNwC7L+HdJouXwStxsBmBaNAWPeGORLno3AFtc9cZwbm7UtJiW0BTyZChA5AEd9WpYvY5/7kdWLgbAp1ZdgSWpnon6ccMugGJSOpXpzJWDiQa/01+YA5xp/x7zy45u5Qu1Qyxw2cPkI7Yktq/TMdYtohJv2GHrRgAAAIACUJctsRAF/5tGZ5+yHS4UeaG1ozb6nn4QOFXevPTwwvZfraXUz2DxtBNEd2D9mR2x97tqMQYaUDtgtQ1yJfjjSjrEYFnY1B3LDDVpimv4SioJhU2RevL40Vk36+yIBS+nVN+gaGGeaCYPa+6NNl4STeYIXaDrztuSGCnUTpfwmg== Kefah T. Issa
-ssh-dss AAAAB3NzaC1kc3MAAACBAOWXOCHHMkp2DYKeqohpWCNziSBoz8BPb1yReFE1CDvKnRwDOUBMTc5RuCQd9yDKQK5y4m/uZ6TeoRxRcVGV1+yMeojh8IiuENZZiAPT3EXsrCXp3OPQmioJjw6ZR5azhIrt//6hrKcCOl5jCC4NNpCfY611oVy7G+XhjtoGx3QdAAAAFQC6KMXWusw51JGX37kIspR8RKMFlQAAAIBEf32QsWBSPfjLYBRomveqkUC5W/9R+aAtCQlC/pckLJRbRZRPEQjB3WAcGrCLuIngTF56Ercoq/sYPQcaB9LY0OM5Jfthy89tZ4SrJbhOcyto7jRWF2UJioXn5/Z8TP1H2MKvXC0AgWDFMoBRDSFm6uICnhff45K5aNRXoZNZwAAAAIEAgcv7kvORRvcwut6fd8WGuWQ2d6rGSUc3FVtGGp9kMG6ZkJD91d7ZPGDKAwzmBH+xMKHGemKxveHNO+w8SukkYj8CVceqOo6mA6X3nAAZZKXvc0PUlxpZcTCPNCVroy6JxWjEdIMggfxqZ6W4YPffDJVOi9lGpoXOjjXOvNmRUpI= enas@localhost.localdomain
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwTgPwogvQShS3vkpEZfPxtQXol1UDSY+Y7lhKvRv02uCPqSUFJvLI126a8ueB+Jw8AE6HiCmpD/gvvOd+/E+URz+5XkFy2iOZBRZ1qARUTEXgc22FlCGQl5+9Ae+s4ItmyHtBuf6W5C6BX78UbUZFco6UACP4rSOzr0Ouw6dHMeuitqFaBZDomETGv4ZRzPBO69YZPBgrA+UjVwf2zVzhc0Wm8kMQ4XQD5btQ+f/Rva3Wx0jTQqPZ1kJ7ToyUPrhotdbY3WWOnF0o2j8Vv+zrNjfnc1h7IbgarysFT3VKv72irsWh9JZAfQ+lrZ4I5qZ8GHd8cR50NC6inx+X7ZQn mohd.anini@gmail.com
+ssh-dss xxx someone
+ssh-rsa yyy anotherone
 ' >> .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 
@@ -87,9 +86,9 @@ su - io
 git clone https://github.com/kefahi/sedr.git repo
 mkdir -p data logs run/tmp bin
 mysql -uroot -pxxx <<EOF
-create database sedr character set utf8;
-create user 'sedr'@'localhost' identified by 'sedr';
-grant all privileges on sedr.* to 'sedr'@'localhost';
+create database io character set utf8;
+create user 'io'@'localhost' identified by 'xxx';
+grant all privileges on io.* to 'io'@'localhost';
 EOF
 
 curl -sS https://getcomposer.org/installer | php
@@ -107,6 +106,7 @@ ln -s /home/io/repo/basic/web /home/io/public
 # vim /etc/php.ini
 #  expose_php = Off
 #  date.timezone = UTC
+#  cgi.fix_pathinfo=0
   
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.off
 mv /etc/nginx/conf.d/php-fpm.conf /etc/nginx/conf.d/php-fpm.conf.off

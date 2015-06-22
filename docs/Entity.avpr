@@ -1,0 +1,68 @@
+{ "namespace": "io.sedr.avro",
+  "protocol": "Sedr",
+	"types": [
+		{	"type": "record",
+			"name": "Link",
+			"fields": [
+				{"name": "target_id", "type": "string"},   
+				{"name": "properties", "type": ["null", {"type":"map", "values":"string"}]}
+			]},
+		{	"type": "record",
+			"name": "Change",
+			"fields": [
+				{"name": "author_id", "type": "string"},   
+				{"name": "signature", "type": "string"},
+				{"name": "delta", "type": "string"},
+				{"name": "datetime", "type": "long"},
+				{"name": "comments", "type": ["null", "string"]}      
+			]},
+		{	"type": "enum", 
+			"name": "Type",
+			"symbols": ["user", "group", "wiki", "structure", "article","audio","video", "image", "json", "xml", "binary"]},
+		{	"type": "record",
+			"name": "Entity",
+			"fields": [
+				{"name": "id", "type": "string"},
+				{"name": "name", "type": "string"},
+				{"name": "uri", "type": "string"},
+				{"name": "checksum", "type": "string"},
+				{"name": "byte_size", "type": "long"},
+				{"name": "created_at", "type": "long"},
+				{"name": "updated_at", "type": "long"},
+				{"name": "author_id", "type": "string"},        
+				{"name": "owner_id", "type": "string"},        
+				{"name": "external_content_path", "type": ["null", "string"]},
+				{"name": "embedded_content", "type": ["null", "string", "bytes"]},
+				{"name": "comments", "type": ["null", "string"]},
+				{"name": "tags", "type": ["null", {"type":"array", "items":"string"}]},        
+				{"name": "properties", "type": ["null", {"type":"map", "values":"string"}]},        
+				{"name": "changes", "type": ["null", {"type":"array", "items":"Change"}]},
+				{"name": "links", "type": ["null", {"type":"array", "items":"Link"}]},             
+				{"name": "public_key", "type":["null","Type"]}
+			 ]}
+	],
+
+ "messages": {
+	 "create": {
+		 "request": [{"name": "entity", "type": "Entity"}],
+		 "response": "string"
+	 },
+	 "update": {
+		 "request": [{"name": "entity", "type": "Entity"}],
+		 "response": "string"
+	 },
+	 "retrieve": {
+		 "request": [{"name": "entity_id", "type": "string"}],
+		 "response": "Entity"
+	 },
+	 "delete": {
+		 "request": [{"name": "entity_id", "type": "string"}],
+		 "response": "string"
+	 },
+	 "search": {
+		 "request": [{"name": "keyword", "type": "string"}],
+		 "response": {"type":"array", "items":"Entity"}
+	 }
+ }
+}
+

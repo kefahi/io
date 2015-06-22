@@ -56,13 +56,13 @@ Looking at all the functions above, its clear that they all revolve around data,
 ## Technologies
 Nothing is determined yet. Going now though a research phase.
 
-* Git
-* .tar.bz2
-* JSON/Avro for schema definitions
+* [Git](https://github.com/kbjr/Git.php)
+* [.tar.bz2](http://php.net/manual/en/class.phardata.php)
+* JSON/ [Avro](http://apache.osuosl.org/avro/stable/php/) for schema definitions
 * Php
-* Admin LTE/Angular/Metis/SB Admin/Webix
-* Yii2
-
+* [Admin LTE](https://github.com/dmstr/yii2-adminlte-asset)/Angular/Metis/SB Admin/Webix
+* [Yii2](http://www.yiiframework.com/)
+* [AuthClient \](https://github.com/yiisoft/yii2-authclient)
 
 ## Folder structure
 * *Indexes*: A means of speed access (e.g. RDBMS, NoSQL, Lucene index ...etc). This remains rather an artifact of the master data persisted on the file system. As such it must be always possible to rebuild the indexes without any loss of information.
