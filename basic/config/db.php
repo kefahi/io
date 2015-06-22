@@ -2,8 +2,6 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=sedr',
-    'username' => 'sedr',
-    'password' => 'sedr',
+    'dsn' => 'sqlite:../data/sqlite3.db',
     'charset' => 'utf8',
 ];

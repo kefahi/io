@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS Entity (
   'type' INTEGER NOT NULL -- Actor {00: User, 01: Group, ...7}, Content {8: Wiki, 9: Structure, 10: Article, 11: Media (Image, Audio and Video), 12: JSON, 13: Xml, 14: Binary, 15: Message}
 );
 
-CREATE IF NOT EXISTS EntityProperty (
+CREATE TABLE IF NOT EXISTS EntityProperty (
   property_name TEXT NOT NULL,
   property_value BLOB NOT NULL,
   entity_id INTEGER NOT NULL REFERENCES Entity(id), 
@@ -61,14 +61,14 @@ CREATE TABLE IF NOT EXISTS Link (
 	id INTEGER PRIMARY KEY,
   from_id INTEGER REFERENCES Entity(id),
   to_id INTEGER REFERENCES Entity(id),
-  UNIQUE (from_id, to_id, property_name)
+  UNIQUE (from_id, to_id)
 );
 
 CREATE TABLE IF NOT EXISTS LinkProperty (
   property_name TEXT NOT NULL,
   property_value BLOB NOT NULL,
-  entity_id INTEGER NOT NULL REFERENCES Entity(id), 
-  PRIMARY KEY(entity_id, property_name) 
+  link_id INTEGER NOT NULL REFERENCES Link(id), 
+  PRIMARY KEY(link_id, property_name) 
 );
 
 CREATE TABLE IF NOT EXISTS Change (
