@@ -5,7 +5,7 @@
 
 ```bash
 dnf update
-dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-22.rpm
+dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-mcrypt php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-22.rpm
 dnf install --enablerepo=remi redis
 
 
@@ -99,6 +99,8 @@ composer global require "fxp/composer-asset-plugin:~1.0.0"
 composer create-project --prefer-dist yiisoft/yii2-app-basic basic
 ln -s /home/io/repo/basic/web /home/io/public
 
+cd /home/io/reop/basic
+./yii migrate --interactive=0
 ```
 
 ## Web server (nginx/php-fpm)
