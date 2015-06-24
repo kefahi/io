@@ -6,5 +6,6 @@ return [
     'dsn' => 'mysql:host=127.0.0.1;dbname=io',
     'username' => 'io',
     'password' => 'io',
+		'enableSchemaCache' => true,
     'charset' => 'utf8',
 ];

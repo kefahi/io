@@ -28,6 +28,14 @@ return [
         ],
         'db' => $db,
         'redis' => $redis,
+        'authManager' => [
+          'class' => 'yii\rbac\DbManager',
+          'ruleTable'=>'AuthRule',
+          'itemTable'=>'AuthItem',
+          'itemChildTable'=>'AuthItemChild',
+          'assignmentTable'=>'AuthAssignment',
+          'defaultRoles' => ['guest'],  
+        ],
     ],
     'params' => $params,
 ];

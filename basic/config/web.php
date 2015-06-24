@@ -43,7 +43,14 @@ $config = [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
 				],
-					
+				'authManager' => [
+					'class' => 'yii\rbac\DbManager',
+					'ruleTable'=>'AuthRule',
+					'itemTable'=>'AuthItem',
+					'itemChildTable'=>'AuthItemChild',
+					'assignmentTable'=>'AuthAssignment',
+					'defaultRoles' => ['guest'],	
+				],
     ],
     'params' => $params,
 ];
