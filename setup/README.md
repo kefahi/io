@@ -100,6 +100,7 @@ composer create-project --prefer-dist yiisoft/yii2-app-basic basic
 ln -s /home/io/repo/basic/web /home/io/public
 
 cd /home/io/reop/basic
+./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
 ./yii migrate --interactive=0
 ```
 

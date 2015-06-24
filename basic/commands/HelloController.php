@@ -1,30 +1,20 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace app\commands;
 
 use yii\console\Controller;
+use app\models\Entity;
+use app\models\Group;
 
-/**
- * This command echoes the first argument that you have entered.
- *
- * This command is provided as an example for you to learn how to create console commands.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
-class HelloController extends Controller
-{
-    /**
-     * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
-     */
-    public function actionIndex($message = 'hello world')
-    {
-        echo $message . "\n";
+class HelloController extends Controller {
+    public function actionIndex($message = 'hello world') {
+			$entities = Entity::find()->all();
+			foreach ($entities as $entity) {
+					echo "$entity->id $entity->name " . get_class($entity) . "\n";
+			}
+
+			$group = Group::find()->limit(1)->one();
+			#echo "$group->id $group->name " . get_class($group) . "\n";
+      echo $message . "\n";
     }
 }

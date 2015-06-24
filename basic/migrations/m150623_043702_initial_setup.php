@@ -17,7 +17,8 @@ class m150623_043702_initial_setup extends Migration {
 				'description' => Schema::TYPE_STRING, 
 				'public_key'  => Schema::TYPE_STRING, # For User only
 				'credentials' => Schema::TYPE_STRING, # For User only
-				'type'        => Schema::TYPE_INTEGER . ' NOT NULL', # Actor {00: User, 01: Group, ...7}, Content {8: Wiki, 9: Structure, 10: Article, 11: Media (Image, Audio and Video), 12: JSON, 13: Xml, 14: Binary, 15: Message}
+				'type'        => Schema::TYPE_STRING . ' NOT NULL', # actor, content, container 
+				'sub_type'    => Schema::TYPE_STRING, # user/group, plain/rich/structured/message/wiki/binary, folder
 			]);
 			$this->addForeignKey('EntityOwner', 'Entity', 'owner_id', 'Entity', 'id');
 
@@ -36,7 +37,7 @@ class m150623_043702_initial_setup extends Migration {
 				'checksum' => Schema::TYPE_STRING . ' NOT NULL',
 				'byte_size' => Schema::TYPE_INTEGER . ' NOT NULL',
 				'embedded' => Schema::TYPE_TEXT,
-				'format' => Schema::TYPE_STRING, 
+				'format' => Schema::TYPE_STRING, # json,xml,markdown,pdf,sqlitedb,avro,images,video,audio,,binary,xhtml,
 				'path' => Schema::TYPE_STRING,
 				'type' => Schema::TYPE_INTEGER . ' NOT NULL', # 1: Embedded, 2: External
 				]);

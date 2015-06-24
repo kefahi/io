@@ -91,4 +91,17 @@ class Entity extends \yii\db\ActiveRecord
     public function getToLinks() {
         return $this->hasMany(Link::className(), ['to_id' => 'id']);
     }
+
+		public static function instantiate($row) {
+				switch ($row['type']) {
+						case Actor::TYPE:
+								return (isset($row['sub_type']) && Group::TYPE == $row['sub_type'])? new Group : new User();
+						case Content::TYPE:
+								return new Content();
+						case Container::TYPE:
+								return new Container();
+						default:
+							 return new self;
+				}
+		}
 }
