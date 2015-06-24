@@ -75,23 +75,12 @@ class m150623_043702_initial_setup extends Migration {
     }
 
     public function safeDown() {
-			$this->dropForeignKey('ChangeEntity', 'Change');
-			$this->dropForeignKey('ChangeAuthor', 'Change');
 			$this->dropTable('Change');
-			$this->dropForeignKey('LinkProperty_', 'LinkProperty');
 			$this->dropTable('LinkProperty');
-
-			$this->dropForeignKey('LinkFromEntity', 'Link');
-			$this->dropForeignKey('LinkToEntity', 'Link');
 			$this->dropTable('Link');
-
-			$this->dropForeignKey('DatumEntity', 'Datum');
 			$this->dropTable('Datum');
-      $this->dropForeignKey('EntityProperty_', 'EntityProperty');
 			$this->dropTable('EntityProperty');
-			$this->dropForeignKey('EntityOwner', 'Entity');
 			$this->dropTable('Entity');
-
     }
 }
 
