@@ -72,3 +72,33 @@ Nothing is determined yet. Going now though a research phase.
 * *Data revision history*: The deltas of the entities as they came to be
 * *Meta data* (Lineage, schema, History): The story of the data and how they became to be.
 * *Modules* (code/binaries): Individual modules that can manage (read/write/present) certain types of entities.
+```
+.
+├── data
+│   ├── family
+│   ├── files
+│   │   ├── books
+│   │   ├── documents
+│   │   └── media
+│   ├── friends
+│   ├── interests
+│   ├── links
+│   ├── messages
+│   ├── personal
+│   └── structures
+│       ├── financial
+│       │   └── invoices
+│       ├── inventory
+│       ├── pages
+│       └── tickets
+├── events
+├── indexes
+├── meta
+│   ├── history
+│   ├── lineage
+│   └── schema
+├── modules
+├── people
+├── README.md
+└── revisions
+```
