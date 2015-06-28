@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150623_043702_initial_setup extends Migration {
+class m150628_032916_initial_tables extends Migration {
     public function safeUp() {
 			$this->createTable('Entity', [
 				'id'          => Schema::TYPE_PK,
@@ -15,10 +15,10 @@ class m150623_043702_initial_setup extends Migration {
         'owner_id'    => Schema::TYPE_INTEGER . ' NOT NULL', # For Content only
         'author_id'   => Schema::TYPE_INTEGER . ' NOT NULL', # For Content only
 				'description' => Schema::TYPE_STRING, 
-				'public_key'  => Schema::TYPE_STRING, # For User only
-				'credentials' => Schema::TYPE_STRING, # For User only
+				'public_key'  => Schema::TYPE_STRING, # For Person only
+				'credentials' => Schema::TYPE_STRING, # For Person only
 				'type'        => Schema::TYPE_STRING . ' NOT NULL', # actor, content, container 
-				'sub_type'    => Schema::TYPE_STRING, # user/group, plain/rich/structured/message/wiki/binary, folder/tarball
+				'sub_type'    => Schema::TYPE_STRING, # person/group, plain/rich/structured/message/wiki/binary, folder/tarball
 			]);
 			$this->addForeignKey('EntityOwner', 'Entity', 'owner_id', 'Entity', 'id');
 
@@ -87,3 +87,5 @@ class m150623_043702_initial_setup extends Migration {
 
 # View all constraints on MariaDb
 # select TABLE_NAME as 'Table', COLUMN_NAME as 'Column', CONSTRAINT_NAME as 'Constraint', REFERENCED_TABLE_NAME as 'Table',REFERENCED_COLUMN_NAME as 'Columns',ORDINAL_POSITION as 'Position', POSITION_IN_UNIQUE_CONSTRAINT as 'Unique' from information_schema.KEY_COLUMN_USAGE WHERE CONSTRAINT_SCHEMA = 'io';
+
+
