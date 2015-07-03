@@ -68,9 +68,16 @@ Nothing is determined yet. Going now though a research phase.
 
 ## Folder structure
 
+* **data**: The Data respository, it holds all data entities and belongings/files. The way folders are arranged under this is left to the user.
+* **meta**: The story of the data and how it became to be
+* **modules**: aka code/binaries: individual modules that can manage (read/write/present) certain types of entities.
+* **events**: aka messages / changes: The individual change events that would contribute to the data repository.
+* **revisions**: aka attic. The old delta copies of the data. It should be possible to delete or compact this.
+* **indexes**: Indexes for data and metadata to make finding, quering data faster. This can be regenerated at any time. it could be (RDBMS like sqlite, NoSQL, Lucene indexes ..etc).
+
 ```
 sample
-├── data # The Data respository, it holds all data entities and belongings/files. The way folders are arranged under this is left to the user.
+├── data 
 │   ├── family
 │   ├── files
 │   │   ├── books
@@ -87,13 +94,13 @@ sample
 │       ├── inventory
 │       ├── pages
 │       └── tickets
-├── events # aka messages / changes: The individual change events that would contribute to the data repository.
-├── indexes # Indexes for data and metadata to make finding, quering data faster. This can be regenerated at any time. it could be (RDBMS like sqlite, NoSQL, Lucene indexes ..etc). 
-├── meta # The story of the data and how it became to be
+├── events 
+├── indexes  
+├── meta 
 │   ├── history
 │   ├── lineage
 │   └── schema
-├── modules # aka code/binaries: individual modules that can manage (read/write/present) certain types of entities.
+├── modules 
 ├── people 
-└── revisions # aka attic. The old delta copies of the data. It should be possible to delete or compact this. 
+└── revisions  
 ```
