@@ -1,8 +1,8 @@
-# sedr
+# edraj
 
 Data Management System
 
-The name comes from the Arabic word "سدر" which is the plural for Rhamnus (a tree that grows in the Arabian Peninsula and Levant with dense branches and leaves and deep roots); the singular form is Sedra "سدرة".
+The name **edraj** (in Arabic "إدراج") comes from the merge of two Arabic words "إدخال" (input) and "إخراج" (output) to reflect the nature of this system that deals with ingesting data and surfacing it up. The merged Arabic word edraj also means enroll.
 
 In today's world we are sinking in massive amounts of information. Not information that surrounds us but information that we produce or relate to us; your countless photos, videos and files, your contributions to the social media, your emails ...etc. Imagine a system that is capable of consolidating all of that into one with the proper level of abstraction that makes it easy for you to manage your content and interact with with your circles of people providing them controlled access to your data and consuming from them as well; more of an ad-hoc network of p2p content.
 
