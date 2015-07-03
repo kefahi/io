@@ -67,14 +67,10 @@ Nothing is determined yet. Going now though a research phase.
 * [AuthClient \](https://github.com/yiisoft/yii2-authclient)
 
 ## Folder structure
-* *Indexes*: A means of speed access (e.g. RDBMS, NoSQL, Lucene index ...etc). This remains rather an artifact of the master data persisted on the file system. As such it must be always possible to rebuild the indexes without any loss of information.
-* *Data* The actual repository holding the data entities along with sub-content.
-* *Data revision history*: The deltas of the entities as they came to be
-* *Meta data* (Lineage, schema, History): The story of the data and how they became to be.
-* *Modules* (code/binaries): Individual modules that can manage (read/write/present) certain types of entities.
+
 ```
-.
-├── data
+sample
+├── data # The Data respository, it holds all data entities and belongings/files. The way folders are arranged under this is left to the user.
 │   ├── family
 │   ├── files
 │   │   ├── books
@@ -91,14 +87,13 @@ Nothing is determined yet. Going now though a research phase.
 │       ├── inventory
 │       ├── pages
 │       └── tickets
-├── events
-├── indexes
-├── meta
+├── events # aka messages / changes: The individual change events that would contribute to the data repository.
+├── indexes # Indexes for data and metadata to make finding, quering data faster. This can be regenerated at any time. it could be (RDBMS like sqlite, NoSQL, Lucene indexes ..etc). 
+├── meta # The story of the data and how it became to be
 │   ├── history
 │   ├── lineage
 │   └── schema
-├── modules
-├── people
-├── README.md
-└── revisions
+├── modules # aka code/binaries: individual modules that can manage (read/write/present) certain types of entities.
+├── people 
+└── revisions # aka attic. The old delta copies of the data. It should be possible to delete or compact this. 
 ```
