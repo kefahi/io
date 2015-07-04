@@ -36,6 +36,8 @@ This project aims at providing a unified Data Management System that would deliv
 
 Looking at all the functions above, its clear that they all revolve around data, meta data and presentation. 
 
+![High-level block digram](https://rawgit.com/kefahi/io/master/docs/architecture.svg)
+
 ## Principles 
 * Data and changes are *almost* immutable (pretty much like git - or based on it - ). This immutability should come at minimal storage overhead (only historic delta's are saved, along with the full most uptodate version)
 * Entry-oriented (document oriented): All the related data to an entry (Meta-data, actual content and any file hierarchy) is self contained in the entry object. That is compressed (e.g. entry_abc.tar.bz2). Each entry has a pointer to the respective module (including its specific version requirements) that has the format specifications and can interact with the entry.
