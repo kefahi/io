@@ -10,20 +10,26 @@ This is essentially a distributed data management system.
 * Data and changes are *almost* immutable (pretty much like git - or based on it - ). This immutability should come at minimal storage overhead (only historic delta's are saved, along with the full most up-to-date version)
 * Entry-oriented (document oriented): All the related data to an entry (Meta-data, actual content and any file hierarchy) is self contained in the entry object. That is compressed (e.g. entry_abc.tar.bz2). Each entry has a pointer to the respective module (including its specific version requirements) that has the format specifications and can interact with the entry.
 * Graph-enabled. Entries can have pointers (relations + attributes) to each other.
-* Modular data handlers: Modules that can ingest various types of data: Text, PDF, eBook, Media (Images, Audio, Video), JSON, CSV, Xml, Doc, Excel, Presentation, Avro, ORCFile, Parquet, Sqlite3 db ... etc. A Data handler module also includes the necessary code to parse, enrich and expose data/meta data. Each module would have ...
-  * Indexer / Analyzer
-  * Schema definition
-  * Reader/Writer/Converter
-  * Presentation Layer
-  * Binaries / Logic / code
-* Data entries are indexed so they can be searched. (using Lucene?)
-* Its all JVM-base initially.
+* Modular data handlers: Modules that can ingest various types of data: Text, PDF, eBook, Media (Images, Audio, Video), JSON, CSV, Xml, Doc, Excel, Presentation, Avro, ORCFile, Parquet, Sqlite3 db ... etc. A Data handler module also includes the necessary code to parse, enrich and expose data/meta data. 
+* Data entries are indexed so they can be searched. (using indexing technologies such as lucene)
 * Security: Proper access management and an entry is signed by its author
 * API Interface that encompasses all the features. High-performance Non-blocking. (netty?)
 * UI that interacts with the API; Views (list/Gride/cards/tree/graph), search interface, CRUD. 
 * Distributed and decentralized. Just like/on top of your regular file/email/cms systems.
 * Does not rely on a Database engine; but rather has the data in textual representation (e.g. JSON)
 * Miners are additional components responsible for two things: finding new content and improving the quality/meta information of it. They mine local and external sedras looking for new content and new perspective on already existing content.
+
+## Content Modules
+
+Each module would have:
+  * Indexer / Analyzer
+  * Schema definitions
+  * Reader/Writer/Converter
+  * Presentation Layer
+  * Binaries / Logic / code
+  
+## Miners
+Miners search for content according to the user's rules/criteria. e.g. Get me my friends updates that are of certain topics (tags), deliver messages. They maintain the meta data from all connected instances and from other miners. 
 
 ## Folder structure
 
@@ -71,6 +77,8 @@ sample
 
 In a NoSQL document oriented setup; there would be two or three main schema.
 
+![ERD (for RDBMS)](https://rawgit.com/kefahi/io/master/docs/erd.png)
+
 ### Entity Types -> Sub-types
 * Actor
   * Person
@@ -96,8 +104,6 @@ JSON, XML, Avro, Markdown, Xhtml, Images, Audio, Video, PDF, Documents, Binary, 
 ### Change Types
 * Create
 * Update
-
-![ERD (for RDBMS)](https://rawgit.com/kefahi/io/master/docs/erd.png)
 
 ## Implementation Technologies
 Nothing is determined yet. Going now though a research phase.
