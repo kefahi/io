@@ -36,7 +36,7 @@ This project aims at providing a unified Data Management System that would deliv
 
 Looking at all the functions above, its clear that they all revolve around data, meta data and presentation. 
 
-![High-level block digram](https://rawgit.com/kefahi/io/master/docs/architecture.svg)
+[Design](docs/readme.md)
 
 ## Principles 
 * Data and changes are *almost* immutable (pretty much like git - or based on it - ). This immutability should come at minimal storage overhead (only historic delta's are saved, along with the full most uptodate version)
