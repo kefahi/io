@@ -20,7 +20,7 @@ An entity could actually be a bit more than a single file. it could for example 
 
 Now imagine a wiki page being an entity, a blog article, an email or instant message, a ticket, a spread sheet, an ebook / pdf and so forth an so on.
 
-Sedr plans to abstract all that, and present one software (or better say reference implementation of a software as there is no reason why other compatible software wont be written for it) that would act like all the aforementioned systems and more.
+edraj plans to abstract all that, and present one software (or better say reference implementation of a software as there is no reason why other compatible software wont be written for it) that would act like all the aforementioned systems and more.
 
 This project aims at providing a unified Data Management System that would deliver the functionality of the systems below:
 - Blogger/CMS (e.g. Wrodpress)
