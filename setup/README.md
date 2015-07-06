@@ -83,23 +83,30 @@ setsebool -P httpd_enable_homedirs 1
 
 
 su - io
-git clone https://github.com/kefahi/sedr.git repo
-mkdir -p data logs run/tmp bin
+git clone https://github.com/kefahi/io.git repo
 mysql -uroot -pxxx <<EOF
 create database io character set utf8;
 create user 'io'@'localhost' identified by 'xxx';
 grant all privileges on io.* to 'io'@'localhost';
 EOF
 
+mkdir repo/basic/runtime/logs
+mkdir -p bin
+
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar bin/composer
 chmod a+x bin/composer
-cd public
-composer global require "fxp/composer-asset-plugin:~1.0.0"
-composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-ln -s /home/io/repo/basic/web /home/io/public
 
-cd /home/io/reop/basic
+composer global require "fxp/composer-asset-plugin:~1.0.0"
+composer create-project --prefer-dist yiisoft/yii2-app-basic tmp
+
+mv tmp/vendor repo/basic/vendor
+
+rm -fr tmp
+
+chmod 777 repo/basic/web/assets
+
+cd repo/basic
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
 ./yii migrate --interactive=0
 ```
