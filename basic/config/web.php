@@ -39,20 +39,36 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'redis' => require(__DIR__ . '/redis.php'),
-				'urlManager' => [
-            'showScriptName' => false,
+        'urlManager' => [
+            'showScriptName' => true,
             'enablePrettyUrl' => true,
-				],
-				'authManager' => [
-					'class' => 'yii\rbac\DbManager',
-					'ruleTable'=>'AuthRule',
-					'itemTable'=>'AuthItem',
-					'itemChildTable'=>'AuthItemChild',
-					'assignmentTable'=>'AuthAssignment',
-					'defaultRoles' => ['guest'],	
-				],
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'ruleTable'=>'AuthRule',
+            'itemTable'=>'AuthItem',
+            'itemChildTable'=>'AuthItemChild',
+            'assignmentTable'=>'AuthAssignment',
+            'defaultRoles' => ['guest'],
+        ],
     ],
     'params' => $params,
+    'modules' => [
+        /**
+         * For more information about the available parameters visit:
+         * https://github.com/dektrium/yii2-user/blob/master/docs/configuration.md
+        **/
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
+        'rbac' => [
+            'class' => 'dektrium\rbac\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

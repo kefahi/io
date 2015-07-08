@@ -90,24 +90,15 @@ create user 'io'@'localhost' identified by 'xxx';
 grant all privileges on io.* to 'io'@'localhost';
 EOF
 
-mkdir repo/basic/runtime/logs
-mkdir -p bin
-
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar bin/composer
-chmod a+x bin/composer
-
-composer global require "fxp/composer-asset-plugin:~1.0.0"
-composer create-project --prefer-dist yiisoft/yii2-app-basic tmp
-
-mv tmp/vendor repo/basic/vendor
-
-rm -fr tmp
-
-chmod 777 repo/basic/web/assets
+chmod 0777 repo/basic/runtime
+chmod 0777 repo/basic/web/assets
 
 cd repo/basic
+curl -sS https://getcomposer.org/installer | php
+php composer.phar update
+
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
+./yii migrate --interactive=0 --migrationPath=@vendor/dektrium/yii2-user/migrations
 ./yii migrate --interactive=0
 ```
 
