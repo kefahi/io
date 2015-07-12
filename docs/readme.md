@@ -29,7 +29,20 @@ Each module would have:
   * Binaries / Logic / code
   
 ## Miners
-Miners search for content according to the user's rules/criteria. e.g. Get me my friends updates that are of certain topics (tags), deliver messages. They maintain the meta data from all connected instances and from other miners. 
+Miners search for content and people according to the user's rules/criteria. e.g. Get me my friends updates that are of certain topics (tags), deliver messages. They maintain the meta data from all connected instances and from other miners.
+
+### Public Miner
+* Push: events (distribute to registered inboxes and meta index). a registered inbox receives direct messages and also registeres rules for interesting events. every event/entity is signed by its author. encryption is optional.
+circls: of people (actually a social graph) along with classification (friends, acquaintance, family ...etc)
+* Poll/crawl: to meta index. A meta index keeps reference to entities.
+* app-store for modules (with all historic versions, so content referring to a specific version can get that respective version)
+
+### Other considerations
+
+* Realtime-ness. TBD
+* Events chaining (consequetive events where order need to be maintained). comments/concurrent document editing ... etc.
+* key/trust-management? should we use existing pgp?
+* identity managment is handled by oauth and friends.
 
 ## Folder structure
 
@@ -42,7 +55,7 @@ Miners search for content according to the user's rules/criteria. e.g. Get me my
 
 ```
 sample
-├── data 
+├── data
 │   ├── family
 │   ├── files
 │   │   ├── books
@@ -59,15 +72,15 @@ sample
 │       ├── inventory
 │       ├── pages
 │       └── tickets
-├── events 
-├── indexes  
-├── meta 
+├── events
+├── indexes
+├── meta
 │   ├── history
 │   ├── lineage
 │   └── schema
-├── modules 
-├── people 
-└── revisions  
+├── modules
+├── people
+└── revisions
 ```
 
 ## ERD
@@ -112,7 +125,7 @@ Edraj can be implemented in a number of technology combinations:
 * C++/QT fro Native cross-platfrom desktop/mobile app
 * Java/Scala
 * Php/yii2
-* NodeJS
+* NodeJS/IO.JS
 
 At this point wer are considering Php/Yii2.
 
