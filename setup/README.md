@@ -90,16 +90,19 @@ create user 'io'@'localhost' identified by 'xxx';
 grant all privileges on io.* to 'io'@'localhost';
 EOF
 
-chmod 0777 repo/basic/runtime
-chmod 0777 repo/basic/web/assets
-
-cd repo/basic
+cd repo/app
 curl -sS https://getcomposer.org/installer | php
 php composer.phar update
 
+php init --env=Development
+
+./yii migrate --interactive=0
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
 ./yii migrate --interactive=0 --migrationPath=@vendor/dektrium/yii2-user/migrations
-./yii migrate --interactive=0
+
+cd frontend/web
+ln -s ../../backend/web backend
+
 ```
 
 ## Web server (nginx/php-fpm)
