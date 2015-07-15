@@ -1,6 +1,25 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'modules' => [
+        // Configuration Yii2-User Backend //
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableFlashMessages' => false,
+            'enableRegistration' => true,
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin'],
+            'mailer' => [
+                'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
+                'welcomeSubject'        => 'Welcome subject',
+                'confirmationSubject'   => 'Confirmation subject',
+                'reconfirmationSubject' => 'Email change subject',
+                'recoverySubject'       => 'Recovery subject',
+            ],
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -35,12 +54,28 @@ return [
             ],
         ],
         */
-        /*
+        // Configuration Yii2-User //
         'user' => [
-            'identityClass' => 'app\models\User',
+        	'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_frontIdentity',
+                'path' => '/',
+                'httpOnly' => true,
+            ],
         ],
-        */
+        // Configuration Request [Yii2-User] //
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'baseUrl' => '',
+            'enableCookieValidation' => true,
+            'cookieValidationKey' => 'YOUR_KEY_HERE',
+            'csrfParam' => '_frontendCSRF',
+            'csrfCookie' => [
+                'httpOnly' => true,
+                'path' => '/',
+            ],
+        ],
         //'redis' => require(__DIR__ . '/redis.php'),
         'urlManager' => [
             'showScriptName' => true,

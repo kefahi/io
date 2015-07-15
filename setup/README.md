@@ -101,7 +101,7 @@ php init --env=Development
 ./yii migrate --interactive=0 --migrationPath=@vendor/dektrium/yii2-user/migrations
 
 cd frontend/web
-ln -s ../../backend/web backend
+ln -s ../../backend/web admin
 
 ```
 
