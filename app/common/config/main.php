@@ -19,6 +19,9 @@ return [
                 'recoverySubject'       => 'Recovery subject',
             ],
         ],
+        'rbac' => [
+            'class' => 'dektrium\rbac\Module',
+        ],
     ],
     'components' => [
         'cache' => [
