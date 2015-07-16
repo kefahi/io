@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
         "dektrium/yii2-user": "0.9.*@dev",
         "dektrium/yii2-rbac": "dev-master",
-        "yiisoft/yii2-authclient": "~2.0.0"
+        "yiisoft/yii2-authclient": "~2.0.0",
+        "kartik-v/yii2-markdown": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
