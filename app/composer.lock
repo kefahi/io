@@ -770,12 +770,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "99ea3bbf448bd74efe0f3916018b81a8e57f91dd"
+                "reference": "031ef62f0269642cd1128ce9c81030630fd4ad91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/99ea3bbf448bd74efe0f3916018b81a8e57f91dd",
-                "reference": "99ea3bbf448bd74efe0f3916018b81a8e57f91dd",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/031ef62f0269642cd1128ce9c81030630fd4ad91",
+                "reference": "031ef62f0269642cd1128ce9c81030630fd4ad91",
                 "shasum": ""
             },
             "require": {
@@ -850,7 +850,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-07-14 12:16:20"
+            "time": "2015-07-17 05:50:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1263,12 +1263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "1d2f8519c78c557b3d28f647a6bacfad1d6720f8"
+                "reference": "ef8f6f69884b10ba1e55dce6d925a9df021d904d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/1d2f8519c78c557b3d28f647a6bacfad1d6720f8",
-                "reference": "1d2f8519c78c557b3d28f647a6bacfad1d6720f8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ef8f6f69884b10ba1e55dce6d925a9df021d904d",
+                "reference": "ef8f6f69884b10ba1e55dce6d925a9df021d904d",
                 "shasum": ""
             },
             "require": {
@@ -1302,7 +1302,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-06-24 10:53:39"
+            "time": "2015-07-16 14:45:11"
         },
         {
             "name": "yiisoft/yii2-faker",

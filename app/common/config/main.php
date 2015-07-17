@@ -18,6 +18,9 @@ return [
                 'reconfirmationSubject' => 'Email change subject',
                 'recoverySubject'       => 'Recovery subject',
             ],
+            'modelMap' => [
+		        'User' => 'common\models\User',
+		    ],
         ],
         'rbac' => [
             'class' => 'dektrium\rbac\Module',
@@ -69,28 +72,6 @@ return [
             ],
         ],
         */
-        // Configuration Yii2-User //
-        'user' => [
-        	'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => [
-                'name' => '_frontIdentity',
-                'path' => '/',
-                'httpOnly' => true,
-            ],
-        ],
-        // Configuration Request [Yii2-User] //
-        'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'baseUrl' => '',
-            'enableCookieValidation' => true,
-            'cookieValidationKey' => 'YOUR_KEY_HERE',
-            'csrfParam' => '_frontendCSRF',
-            'csrfCookie' => [
-                'httpOnly' => true,
-                'path' => '/',
-            ],
-        ],
         //'redis' => require(__DIR__ . '/redis.php'),
         'urlManager' => [
             'showScriptName' => true,

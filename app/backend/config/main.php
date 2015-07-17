@@ -32,8 +32,10 @@ return [
             'errorAction' => 'site/error',
         ],
         // Configuration Yii2-User //
+        // Configuration Yii2-User //
         'user' => [
-            // Override identityCookie parameters
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
             'identityCookie' => [
                 'name' => '_backendIdentity',
                 'path' => '/admin',
@@ -44,6 +46,8 @@ return [
         'request' => [
             // Overrride baseUrl and csrfParam parameters for backend website and enabling CSRF Validation
             'baseUrl' => '/admin',
+            'enableCookieValidation' => true,
+            'cookieValidationKey' => 'YOUR_KEY_HERE',
             'csrfParam' => '_backendCSRF',
             'enableCsrfValidation' => true,
             'csrfCookie' => [
