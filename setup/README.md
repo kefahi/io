@@ -91,6 +91,9 @@ grant all privileges on io.* to 'io'@'localhost';
 EOF
 
 cd repo/app
+
+php init --env=Development
+
 curl -sS https://getcomposer.org/installer | php
 php composer.phar update
 
