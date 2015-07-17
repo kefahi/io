@@ -94,8 +94,6 @@ cd repo/app
 curl -sS https://getcomposer.org/installer | php
 php composer.phar update
 
-php init --env=Development
-
 ./yii migrate --interactive=0
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
 ./yii migrate --interactive=0 --migrationPath=@vendor/dektrium/yii2-user/migrations
