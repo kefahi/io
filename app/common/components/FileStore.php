@@ -48,18 +48,13 @@ EOL;
 		$this->finfo = finfo_open(FILEINFO_MIME_TYPE);
   }
 
-	public function hello() { 
-		echo "Hello there ... from File Store\nwith path {$this->path}\n"; 
-		$this->index(); // Inde
-	}
-
   public function __destruct() {
 		echo "Destructor called\n";
 		if(isset($this->db)) $this->db->close();
     if(isset($this->finfo)) finfo_close($this->finfo);
 	}
 
-	function index($path = '.') { // Indexes all files/folders under $this->path 
+	public function index($path = '.') { // Indexes all files/folders under $this->path 
 		$list = scandir("{$this->path}/$path" );
     echo "processing path $path\n";
     foreach($list as $item) {
