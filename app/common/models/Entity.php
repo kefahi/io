@@ -92,16 +92,26 @@ class Entity extends \yii\db\ActiveRecord
         return $this->hasMany(Link::className(), ['to_id' => 'id']);
     }
 
-		public static function instantiate($row) {
-				switch ($row['type']) {
-						case Actor::TYPE:
-								return (isset($row['sub_type']) && Group::TYPE == $row['sub_type'])? new Group : new User();
-						case Content::TYPE:
-								return new Content();
-						case Container::TYPE:
-								return new Container();
-						default:
-							 return new self;
-				}
+	public static function instantiate($row) {
+		switch ($row['type']) {
+			case Actor::TYPE:
+					return (isset($row['sub_type']) && Group::TYPE == $row['sub_type'])? new Group : new User();
+			case Content::TYPE:
+					return new Content();
+			case Container::TYPE:
+					return new Container();
+			default:
+				 return new self;
 		}
+	}
+
+    public function beforeSave($insert)
+    {
+        if (!$this->created_at) {
+            $this->created_at = date('Y-m-d H:i:s');
+        } else {
+            $this->updated_at = date('Y-m-d H:i:s');
+        }
+        return parent::beforeSave($insert);
+    }
 }
