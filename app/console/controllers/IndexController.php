@@ -9,4 +9,8 @@ class IndexController extends \yii\console\Controller {
 		echo "Calling index\n";
 		Yii::$app->filestore->index();
 	}
+
+  public function actionQuery() {
+		Yii::$app->filestore->query();
+	}
 }
