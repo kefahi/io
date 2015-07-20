@@ -1,4 +1,5 @@
 <?php
+namespace common\components;
 
 class HttpRequest {
   private $host;
@@ -52,7 +53,7 @@ class HttpRequest {
     }
 
     if (!isset($headers['status_code']) || $headers['status_code'] != 200) {
-      throw new Exception("Bad response code {$headers['status_code']} response: $response");
+      throw new \Exception("Bad response code {$headers['status_code']} response: $response");
     }
 
     if (isset($headers['Transfer-Encoding']) && $headers['Transfer-Encoding'] == 'chunked') {

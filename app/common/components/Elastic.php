@@ -26,10 +26,10 @@ class Elastic extends Component {
 	}
 
   protected static function check($response) {
-//		if(empty($response)) throw new Exception("No response from server");
+//		if(empty($response)) throw new \Exception("No response from server");
 
-		if(preg_match('/{"error":"([^"]*)"/',$response,$match)) 
-			throw new Exception($match[1]);
+		if(preg_match('/"error[s]?":true/',$response,$match)) 
+			throw new \Exception($response);
 	}
 
 	public static function is_associative ($arr) { $a = array_keys($arr); return ($a !== array_keys($a)); }
@@ -84,13 +84,13 @@ class Elastic extends Component {
 	}
 
 	public function createIndex() {
-		$request = '{"settings":{"number_of_shards":5,"number_of_replicas":0}}';
+		$request = '{"settings":{"number_of_shards":1,"number_of_replicas":0}}';
 		$response = $this->http_request->put("/{$this->index}", $request);
     self::check($response);
 	}
 
 	public function map($type, $mapping) {
-		$mapping_data = array($type=>array('properties'=>self::buildMapping($mapping)));
+		$mapping_data = array($type=>array('dynamic'=>'strict', 'properties'=>self::buildMapping($mapping)));
 		$response = $this->http_request->put("/{$this->index}/{$type}/_mapping", json_encode($mapping_data));
     self::check($response);
 	}
@@ -115,7 +115,7 @@ class Elastic extends Component {
       $data = self::mapData($mapping,$document);
       $data['_id'] = $document['_id'];
       $docs [] = $data;
-      Yii::app()->elastic->import($type, $docs);
+      $this->import($type, $docs);
 
 
    }
