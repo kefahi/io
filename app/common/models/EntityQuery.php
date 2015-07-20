@@ -13,7 +13,7 @@ class EntityQuery extends ActiveQuery {
 			if ($this->sub_type !== null) {
 				$this->andWhere(['sub_type' => $this->sub_type]);
 			}
-	   }
+        }
         return parent::prepare($builder);
     }
 }
