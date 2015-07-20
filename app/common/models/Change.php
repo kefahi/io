@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 
@@ -37,5 +37,13 @@ class Change extends \yii\db\ActiveRecord
 
     public function getEntity() {
         return $this->hasOne(Entity::className(), ['id' => 'entity_id']);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!$this->created_at) {
+            $this->created_at = date('Y-m-d H:i:s');
+        }
+        return parent::beforeSave($insert);
     }
 }

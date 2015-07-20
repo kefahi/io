@@ -62,7 +62,7 @@ return [
                 'httpOnly' => true,
                 'path' => '/admin',
             ],
-        ], 
+        ],
     ],
     'params' => $params,
 ];

@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace common\models;
 
 class Actor extends Entity {
     const TYPE = 'actor';

@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace common\models;
 
 class Container extends Entity {
     const TYPE = 'container';

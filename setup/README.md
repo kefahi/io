@@ -127,5 +127,6 @@ systemctl start nginx
 
 ## Check that the app is up and running
 - http://edraj.io/requirements.php
+- http://edraj.io/admin
 - http://edraj.io
 
