@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace common\models;
 
 class Content extends Entity {
     const TYPE = 'content';

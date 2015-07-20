@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace common\models;
 
 class Person extends Actor {
     const SUB_TYPE = 'person';

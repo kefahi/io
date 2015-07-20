@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace common\models;
 
 class Group extends Actor {
     const SUB_TYPE = 'group';
