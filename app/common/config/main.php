@@ -74,7 +74,7 @@ return [
         */
         //'redis' => require(__DIR__ . '/redis.php'),
         'urlManager' => [
-            'showScriptName' => true,
+            'showScriptName' => false,
             'enablePrettyUrl' => true,
         ],
         'authManager' => [
