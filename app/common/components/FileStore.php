@@ -18,16 +18,16 @@ class FileStore extends Component {
 		echo "Initializing Filestore, {$this->index_path}\n";
     $this->db = new \yii\db\Connection (['dsn' => "sqlite:{$this->index_path}/index.sqlite3"]);
     $this->db->open();
-    if(!file_exists("{$this->index_path}/index.sqlite3") ) {
+    //if(!file_exists("{$this->index_path}/index.sqlite3") ) {
 			$ddl_sql = <<<EOL
 				DROP TABLE IF EXISTS Entry;
 				CREATE TABLE IF NOT EXISTS Entry (
 					id INTEGER PRIMARY KEY,
-					embdedded BLOB NULL, -- if this is null then its an external file
+					embedded BLOB NULL, -- if this is null then its an external file
 					path TEXT NULL,
 					name TEXT NULL,
 					checksum TEXT NULL, -- make it not null later
-					-- 'type' TEXT NOT NULL,
+					'type' TEXT NOT NULL,
 					byte_size INTEGER NOT NULL,
 					format TEXT NULL, -- Mime
 					device INTEGER NULL, -- Device id. Null in non-linux
@@ -47,7 +47,7 @@ class FileStore extends Component {
 EOL;
 
 			$this->db->pdo->exec($ddl_sql);
-		}
+		//}
 		$this->command = $this->db->createCommand();
 
 		$this->finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -135,6 +135,19 @@ EOL;
 						echo "\nSkipping file $one_pathname lstat failed\n";
 						continue;
 					}
+
+					if(check_bad_chars($one)) {
+						$skips++;
+						echo "\nSkipping file $one_pathname for containing bad chars\n";
+						continue;
+					}
+
+					if(!mb_check_encoding($one, 'UTF-8')) {
+						$skips++;
+						echo "\nSkipping file $one_pathname for bad utf8 sequence\n";
+						continue;
+					}
+
 					$info = pathinfo($one);
 					$data = array();
 					$data['path'] = $info['dirname'];
@@ -151,9 +164,8 @@ EOL;
 					$data['block_size'] = $stat['blksize'];
 					$data['blocks'] = $stat['blocks'];
 					$data['checksum'] = sha1_file($one_pathname); //hash_file('sha256', $one_pathname);
-					/*$mime = finfo_file($this->finfo, $one);
-					echo "Entry: $item type: $mime \n";
-					$data['format'] = $mime;*/
+					//$data['format'] = finfo_file($this->finfo, $one_pathname);
+					$data['type'] = 'regular';
 
 					$this->command->insert('Entry', $data)->execute();
 				}
@@ -184,4 +196,11 @@ EOL;
 }
 
 
-
+function check_bad_chars($text) {
+	$length = mb_strlen($text);
+	for($i=0; $i<$length; $i++) {
+		if($text[$i] < ' ' || $text[$i] == '"' || $text[$i] == '\')
+			return true;
+	}
+	return false;
+}
