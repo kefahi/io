@@ -59,7 +59,7 @@ EOL;
     if(isset($this->finfo)) finfo_close($this->finfo);
 	}
 
-  public function query() {
+  public function elastic() {
 
 		$mapping = array (
 			"id" => array('type' => 'integer'),
@@ -100,7 +100,7 @@ EOL;
     }
 	}
 
-  public function index() {
+  public function sqlite() {
 		$cmd = 'find ./ -type f ' ;
 		$last = $this->index_path . 'index.last';
 		if(file_exists($last)) 
