@@ -62,6 +62,7 @@ EOL;
   public function query() {
 
 		$mapping = array (
+			"id" => array('type' => 'integer'),
 			"embedded" => array('type'=>'string', 'index'=>'not_analyzed'),
 			"path" => array('type'=>'string', 'index'=>'not_analyzed'),
 			"name" => array('type'=>'string', 'index'=>'not_analyzed'),
@@ -77,19 +78,19 @@ EOL;
 			"create_time" => array('type' => 'date'),
 			"modify_time" => array('type' => 'date'),
 			"block_size" => array('type' => 'integer'),
-			"id" => array('type' => 'integer'),
 			"blocks" => array('type' => 'integer'),
 			);
 
 		$elastic = new Elastic();
-		$elastic->createIndex();
+		//$elastic->createIndex();
+		$elastic->delete('entry');
     $elastic->map('entry',$mapping);
     //$elastic->insert('entry', array('_id'=>'hello world'), $mapping);
     //return;
 
 		$offset = 0;
     $limit = 5000;
-		$s = $this->db->pdo->prepare("select path||'/'||name as _id,emedded, path, name, checksum, byte_size,format,device,inode,nlink,uid,gid,datetime(access_time,'unixepoch','utc') as access_time, datetime(create_time, 'unixepoch','utc') as create_time, datetime(modify_time, 'unixepoch','utc') as modify_time, block_size, blocks from Entry limit $limit offset :offset");
+		$s = $this->db->pdo->prepare("select path||'/'||name as _id,embedded, path, name, checksum, byte_size,format,device,inode,nlink,uid,gid,strftime('%Y-%m-%dT%H:%M:%S',access_time,'unixepoch','utc') as access_time, strftime('%Y-%m-%dT%H:%M:%S',create_time, 'unixepoch','utc') as create_time, strftime('%Y-%m-%dT%H:%M:%S',modify_time, 'unixepoch','utc') as modify_time, block_size, blocks,id from Entry limit $limit offset :offset");
 		$s->execute(array(':offset'=>$offset));
 		while ($ret = $s->fetchAll(\PDO::FETCH_ASSOC)) {
 			echo "got that offset: $offset count " . count($ret) . PHP_EOL;
