@@ -84,6 +84,8 @@ setsebool -P httpd_enable_homedirs 1
 
 su - io
 git clone https://github.com/kefahi/io.git repo
+mkdir -p data logs run/tmp bin
+
 mysql -uroot -pxxx <<EOF
 create database io character set utf8;
 create user 'io'@'localhost' identified by 'xxx';
@@ -101,8 +103,8 @@ php composer.phar update
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
 ./yii migrate --interactive=0 --migrationPath=@vendor/dektrium/yii2-user/migrations
 
-cd frontend/web
-ln -s ../../backend/web admin
+ln -s /home/io/repo/app/frontend/web /home/io/public
+ln -s /home/io/repo/app/backend/web /home/io/admin
 
 ```
 
