@@ -108,6 +108,19 @@ ln -s /home/io/repo/app/backend/web /home/io/admin
 
 ```
 
+## Genrating i18n Messages
+```bash
+cd /home/io/repo/app/
+
+l="LANGUAGES" && sed -i "7s/.*/\t\t$l/" common/config/i18n.php
+# Replace LANGUAGES with the languages you want to support single-quoted and separated by comma
+# e.g.:
+# l="'en','ar'" && sed -i "7s/.*/\t\t$l/" common/config/i18n.php
+
+php yii message/extract @common/config/i18n.php
+
+```
+
 ## Web server (nginx/php-fpm)
 ```bash
 # vim /etc/php.ini
