@@ -5,7 +5,7 @@
 
 ```bash
 dnf update
-dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-mcrypt php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-22.rpm
+dnf install mariadb-server nginx php git byobu vim-enhanced php-mysqlnd php-fpm mosh fcgi firewalld fail2ban php-pecl-imagick php-gd php-mbstring php-pecl-apcu php-opcache  php-pecl-redis php-mcrypt php-intl php-pecl-zip http://rpms.famillecollet.com/fedora/remi-release-24.rpm composer
 dnf install --enablerepo=remi redis
 
 
@@ -27,6 +27,13 @@ set is
 set ic
 set ts=2
 set sw=2 ' >> /etc/vimrc
+
+echo '
+# ADDED BY KEFAH
+export HISTSIZE=-1 HISTFILESIZE=-1 HISTTIMEFORMAT="%d/%m/%y %T "
+' > /etc/profile.d/history.sh
+
+
 ```
 
 ## Add admin user to be used for ssh instead of root
@@ -88,7 +95,7 @@ mkdir -p data logs run/tmp bin
 
 mysql -uroot -pxxx <<EOF
 create database io character set utf8;
-create user 'io'@'localhost' identified by 'xxx';
+create user 'io'@'localhost' identified by 'io';
 grant all privileges on io.* to 'io'@'localhost';
 EOF
 
@@ -96,8 +103,19 @@ cd repo/app
 
 php init --env=Development
 
-curl -sS https://getcomposer.org/installer | php
-php composer.phar update
+#curl -sS https://getcomposer.org/installer | php
+#php composer.phar update
+composer global require "fxp/composer-asset-plugin:^1.2.0"
+composer require yiisoft/yii2
+composer update
+
+# Edit app/common/config/main-local.php 
+# set 
+#            'dsn' => 'mysql:host=localhost;dbname=io',
+#            'username' => 'io',
+#            'password' => 'io',
+#           'charset' => 'utf8',
+
 
 ./yii migrate --interactive=0
 ./yii migrate --interactive=0 --migrationPath=@yii/rbac/migrations
@@ -131,9 +149,9 @@ php yii message/extract @common/config/i18n.php
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.off
 mv /etc/nginx/conf.d/php-fpm.conf /etc/nginx/conf.d/php-fpm.conf.off
 mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.off
-mv /home/io/repo/setup/nginx/nginx.conf /etc/nginx
-mv /home/io/repo/setup/nginx/conf.d/io.conf /etc/nginx/conf.d
-mv /home/io/repo/setup/php-fpm.d/io.conf /etc/php-fpm.d
+cp /home/io/repo/setup/nginx/nginx.conf /etc/nginx
+cp /home/io/repo/setup/nginx/conf.d/io.conf /etc/nginx/conf.d
+cp /home/io/repo/setup/php-fpm.d/io.conf /etc/php-fpm.d
 
 systemctl start php-fpm
 systemctl start nginx
