@@ -44,18 +44,18 @@ class Entity extends \yii\db\ActiveRecord
 
     public function attributeLabels() {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'uri' => 'Uri',
-            'source' => 'Source',
-            'updated_at' => 'Updated At',
-            'created_at' => 'Created At',
-            'owner_id' => 'Owner ID',
-            'author_id' => 'Author ID',
-            'description' => 'Description',
-            'public_key' => 'Public Key',
-            'credentials' => 'Credentials',
-            'type' => 'Type',
+            'id' => Yii::t('io', 'ID'),
+            'name' => Yii::t('io', 'Name'),
+            'uri' => Yii::t('io', 'Uri'),
+            'source' => Yii::t('io', 'Source'),
+            'updated_at' => Yii::t('io', 'Updated At'),
+            'created_at' => Yii::t('io', 'Created At'),
+            'owner_id' => Yii::t('io', 'Owner ID'),
+            'author_id' => Yii::t('io', 'Author ID'),
+            'description' => Yii::t('io', 'Description'),
+            'public_key' => Yii::t('io', 'Public Key'),
+            'credentials' => Yii::t('io', 'Credentials'),
+            'type' => Yii::t('io', 'Type'),
         ];
     }
 
@@ -113,5 +113,10 @@ class Entity extends \yii\db\ActiveRecord
             $this->updated_at = date('Y-m-d H:i:s');
         }
         return parent::beforeSave($insert);
+    }
+
+    public static function getEntityTypes()
+    {
+        return [Actor::TYPE, Content::TYPE, Container::TYPE];
     }
 }

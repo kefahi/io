@@ -138,5 +138,13 @@ return [
                 ],
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                'io*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                ],
+            ],
+        ],
     ],
 ];
